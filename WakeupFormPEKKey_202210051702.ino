@@ -231,7 +231,7 @@ void setup(){
         wifiMulti.addAP("Ojitani2","12345678");
 
         
-        if ((WiFi.begin("Buffalo-G-2588", "mme3hfvdrdpr8") != WL_DISCONNECTED)&&((WiFi.begin("Ojitani2", "12345678") != WL_DISCONNECTED))) {
+        if ((WiFi.begin(ssid1, pw1) != WL_DISCONNECTED)&&((WiFi.begin(ssid2, pw2) != WL_DISCONNECTED))) {
           //ESP.restart();
           ttgo->tft->fillRect(63, 0, 38, 33, TFT_BLACK);
           set_text("X",2,83,15);
