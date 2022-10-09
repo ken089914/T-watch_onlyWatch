@@ -227,8 +227,8 @@ void setup(){
 
     // Wait for the power button to be pressed
     while (!irq) {
-        wifiMulti.addAP("Buffalo-G-2588","mme3hfvdrdpr8");
-        wifiMulti.addAP("Ojitani2","12345678");
+        wifiMulti.addAP(ssid1, pw1);
+        wifiMulti.addAP(ssid2, pw2);
 
         
         if ((WiFi.begin(ssid1, pw1) != WL_DISCONNECTED)&&((WiFi.begin(ssid2, pw2) != WL_DISCONNECTED))) {
