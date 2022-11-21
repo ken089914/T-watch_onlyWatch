@@ -26,22 +26,22 @@ char mo[20];//文字格納用
 char s[20];
 int y_i,mo_i,d_i,h_i,m_i,s_i;
 String years,months,dayes,houres,mints,secs,adapt;
-struct tm timeInfo;//時刻を格納するオブジェクト
+struct tm timeInf;
 int eep_y,eep_mo,eep_d;
 int p;
 char aaa[128];
 
 
 void get_NTP(){
-  getLocalTime(&timeInfo);//tmオブジェクトのtimeInfoに現在時刻を入れ込む
-  sprintf(y, "%02d",timeInfo.tm_year + 1900);//人間が読める形式に変換
-  sprintf(mo, "%02d",timeInfo.tm_mon + 1);//人間が読める形式に変換
-  sprintf(d, "%02d",timeInfo.tm_mday);//人間が読める形式に変換
-  sprintf(h, "%02d",timeInfo.tm_hour);//人間が読める形式に変換
+  getLocalTime(&timeInfo);
+  sprintf(y, "%02d",timeInf.tm_year + 1900);
+  sprintf(mo, "%02d",timeInf.tm_mon + 1);
+  sprintf(d, "%02d",timeInf.tm_mday);
+  sprintf(h, "%02d",timeInf.tm_hour);
   sprintf(m, "%02d",
-          timeInfo.tm_min);//人間が読める形式に変換 
+          timeInf.tm_min);//人間が読める形式に変換 
   sprintf(s, "%02d",
-          timeInfo.tm_sec);//人間が読める形式に変換 
+          timeInf.tm_sec);//人間が読める形式に変換 
   c_to_String();
   //intへ変換
   to_Int();
@@ -101,7 +101,7 @@ void save_EEP(){
 
 
 void set_text(String message,int textSize,int x,int y){ //, int  delay_times){
-  // Set text datum to middle centre
+    // Set text datum to middle centre
     ttgo->tft->setTextDatum(MC_DATUM);
 
     // Set text colour to orange with black background
@@ -128,9 +128,8 @@ void do_Loop_RTC(){
     //日付
     get_EEP();
     
-    //時刻きりだし
+    //時刻切り出し
     snprintf(buf, sizeof(buf), "%s", ttgo->rtc->formatDateTime());
-    //時刻が取れる(h:m:s)
     buffers = String(buf);
     buffers = buffers.substring(0,5);
 
